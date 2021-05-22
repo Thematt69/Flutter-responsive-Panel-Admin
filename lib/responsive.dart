@@ -1,71 +1,38 @@
 import 'package:flutter/material.dart';
 
 class Responsive extends StatelessWidget {
-  final Widget smallMobile;
-  final Widget largeMobile;
+  final Widget mobile;
   final Widget tablet;
-  final Widget laptop;
-  final Widget largeLaptop;
+  final Widget desktop;
 
   const Responsive({
     Key? key,
+    required this.mobile,
     required this.tablet,
-    required this.smallMobile,
-    required this.largeMobile,
-    required this.laptop,
-    required this.largeLaptop,
+    required this.desktop,
   }) : super(key: key);
 
-  factory Responsive.simple({
-    required Widget mobile,
-    required Widget tablet,
-    required Widget laptop,
-  }) {
-    return Responsive(
-      smallMobile: mobile,
-      largeMobile: mobile,
-      tablet: tablet,
-      laptop: laptop,
-      largeLaptop: laptop,
-    );
-  }
-
+  /// Si la largeur est inférieur à 425
   static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 850;
+      MediaQuery.of(context).size.width < 425;
 
-  static bool isSmallMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 768;
-
-  static bool isLargeMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 850 &&
-      MediaQuery.of(context).size.width >= 768;
-
+  /// Si la largeur est supérieur à 425 mais inférieur à 1024
   static bool isTablet(BuildContext context) =>
       MediaQuery.of(context).size.width < 1024 &&
-      MediaQuery.of(context).size.width >= 850;
+      MediaQuery.of(context).size.width >= 425;
 
-  static bool isLaptop(BuildContext context) =>
-      MediaQuery.of(context).size.width < 1440 &&
-      MediaQuery.of(context).size.width >= 1024;
-
-  static bool isLargeLaptop(BuildContext context) =>
-      MediaQuery.of(context).size.width > 1440;
-
+  /// Si la largeur est supérieur à 1024
   static bool isDesktop(BuildContext context) =>
       MediaQuery.of(context).size.width > 1024;
 
   @override
   Widget build(BuildContext context) {
-    if (isLargeLaptop(context)) {
-      return largeLaptop;
-    } else if (isLaptop(context)) {
-      return laptop;
+    if (isDesktop(context)) {
+      return desktop;
     } else if (isTablet(context)) {
       return tablet;
-    } else if (isLargeMobile(context)) {
-      return largeMobile;
     } else {
-      return smallMobile;
+      return mobile;
     }
   }
 }

@@ -35,13 +35,13 @@ class MyFiles extends StatelessWidget {
           ],
         ),
         const SizedBox(height: defaultPadding),
-        Responsive.simple(
+        Responsive(
           mobile: FileInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
             childAspectRatio: _size.width < 650 ? 1.3 : 1,
           ),
           tablet: FileInfoCardGridView(),
-          laptop: FileInfoCardGridView(
+          desktop: FileInfoCardGridView(
             childAspectRatio: _size.width < 1400
                 ? 1.1
                 : _size.width < 1600

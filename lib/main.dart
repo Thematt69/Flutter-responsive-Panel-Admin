@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Admin Panel',
+      themeMode: ThemeMode.dark,
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: lightColor,
         canvasColor: secondaryLightColor,
